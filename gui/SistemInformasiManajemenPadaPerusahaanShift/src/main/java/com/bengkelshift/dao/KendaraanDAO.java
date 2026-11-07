@@ -42,13 +42,10 @@ public class KendaraanDAO {
             return false;
         }
     }
-    public ArrayList<Kendaraan> getAllKendaraan() {
+   public ArrayList<Kendaraan> getAllKendaraan() {
         ArrayList<Kendaraan> daftarKendaraan = new ArrayList<>();
 
-        String sql = "SELECT k.*, p.nama_pelanggan "
-                + "FROM kendaraan k "
-                + "JOIN pelanggan p "
-                + "ON k.id_pelanggan = p.id_pelanggan";
+        String sql = "SELECT * FROM kendaraan";
 
         try (Connection conn = Koneksi.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql);
@@ -58,41 +55,53 @@ public class KendaraanDAO {
 
                 Kendaraan kendaraan = new Kendaraan();
 
-                kendaraan.setIdKendaraan(
-                        rs.getInt("id_kendaraan"));
-
-                kendaraan.setNoPolisi(
-                        rs.getString("no_polisi"));
-
-                kendaraan.setTipeKendaraan(
-                        rs.getString("tipe_kendaraan"));
-
-                kendaraan.setNoRangka(
-                        rs.getString("no_rangka"));
-
-                kendaraan.setNoMesin(
-                        rs.getString("no_mesin"));
-
-                kendaraan.setTahunProduksi(
-                        rs.getInt("tahun_produksi"));
-
-                kendaraan.setIdPelanggan(
-                        rs.getInt("id_pelanggan"));
-
-                kendaraan.setNamaPelanggan(
-                        rs.getString("nama_pelanggan"));
+                kendaraan.setIdKendaraan(rs.getInt("id_kendaraan"));
+                kendaraan.setNoPolisi(rs.getString("no_polisi"));
+                kendaraan.setTipeKendaraan(rs.getString("tipe_kendaraan"));
+                kendaraan.setNoRangka(rs.getString("no_rangka"));
+                kendaraan.setNoMesin(rs.getString("no_mesin"));
+                kendaraan.setTahunProduksi(rs.getInt("tahun_produksi"));
+                kendaraan.setIdPelanggan(rs.getInt("id_pelanggan"));
 
                 daftarKendaraan.add(kendaraan);
             }
 
         } catch (SQLException e) {
-
-            System.out.println(
-                    "Gagal mengambil data kendaraan: "
+            System.out.println("Gagal mengambil data kendaraan: "
                     + e.getMessage());
         }
 
         return daftarKendaraan;
+    }
+    public boolean updateKendaraan(Kendaraan kendaraan) {
+
+    String sql = "UPDATE kendaraan SET "
+            + "no_polisi = ?, "
+            + "tipe_kendaraan = ?, "
+            + "no_rangka = ?, "
+            + "no_mesin = ?, "
+            + "tahun_produksi = ?, "
+            + "id_pelanggan = ? "
+            + "WHERE id_kendaraan = ?";
+
+    try (Connection conn = Koneksi.getConnection();
+         PreparedStatement ps = conn.prepareStatement(sql)) {
+
+        ps.setString(1, kendaraan.getNoPolisi());
+        ps.setString(2, kendaraan.getTipeKendaraan());
+        ps.setString(3, kendaraan.getNoRangka());
+        ps.setString(4, kendaraan.getNoMesin());
+        ps.setInt(5, kendaraan.getTahunProduksi());
+        ps.setInt(6, kendaraan.getIdPelanggan());
+        ps.setInt(7, kendaraan.getIdKendaraan());
+
+        return ps.executeUpdate() > 0;
+
+    } catch (SQLException e) {
+        System.out.println("Gagal mengubah data kendaraan: "
+                + e.getMessage());
+        return false;
+    }
     }
     public boolean hapusKendaraan(int idKendaraan) {
 
