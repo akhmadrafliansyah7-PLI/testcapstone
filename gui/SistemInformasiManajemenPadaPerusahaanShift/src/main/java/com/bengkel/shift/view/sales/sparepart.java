@@ -55,6 +55,8 @@ public class sparepart extends javax.swing.JFrame {
         btnTambah = new javax.swing.JButton();
         btnHapus = new javax.swing.JButton();
         SatuanField = new javax.swing.JTextField();
+        SatuanField1 = new javax.swing.JTextField();
+        SatuanField2 = new javax.swing.JTextField();
 
         jLabel3.setBackground(new java.awt.Color(0, 102, 153));
         jLabel3.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
@@ -136,8 +138,9 @@ public class sparepart extends javax.swing.JFrame {
 
         btnSparePart.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnSparePart.setForeground(new java.awt.Color(0, 102, 153));
-        btnSparePart.setText("Spare Part");
+        btnSparePart.setText("SparePart");
         btnSparePart.setBorder(null);
+        btnSparePart.addActionListener(this::btnSparePartActionPerformed);
 
         btnServis.setForeground(new java.awt.Color(102, 102, 102));
         btnServis.setText("Servis");
@@ -146,21 +149,21 @@ public class sparepart extends javax.swing.JFrame {
         jLabel4.setBackground(new java.awt.Color(0, 102, 153));
         jLabel4.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 102, 153));
-        jLabel4.setText("Spaere Part");
+        jLabel4.setText("SparePart");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Nama", "Harga", "Satuan"
+                "ID", "Nama", "Harga", "Satuan", "No. Servis", "No. Transaksi"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -174,7 +177,7 @@ public class sparepart extends javax.swing.JFrame {
         jLabel6.setBackground(new java.awt.Color(0, 102, 153));
         jLabel6.setFont(new java.awt.Font("Tw Cen MT", 1, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 102, 153));
-        jLabel6.setText("Form Pelanggan");
+        jLabel6.setText("Form SparePart");
 
         namaField.setBackground(new java.awt.Color(204, 204, 204));
         namaField.setForeground(new java.awt.Color(102, 102, 102));
@@ -205,6 +208,16 @@ public class sparepart extends javax.swing.JFrame {
         SatuanField.setText("Satuan");
         SatuanField.addActionListener(this::SatuanFieldActionPerformed);
 
+        SatuanField1.setBackground(new java.awt.Color(204, 204, 204));
+        SatuanField1.setForeground(new java.awt.Color(102, 102, 102));
+        SatuanField1.setText("No. Servis");
+        SatuanField1.addActionListener(this::SatuanField1ActionPerformed);
+
+        SatuanField2.setBackground(new java.awt.Color(204, 204, 204));
+        SatuanField2.setForeground(new java.awt.Color(102, 102, 102));
+        SatuanField2.setText("No. Transaksi");
+        SatuanField2.addActionListener(this::SatuanField2ActionPerformed);
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -222,7 +235,9 @@ public class sparepart extends javax.swing.JFrame {
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnHapus)
                             .addComponent(jButton2)))
-                    .addComponent(SatuanField, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(SatuanField, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SatuanField1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SatuanField2, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -230,12 +245,16 @@ public class sparepart extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel6)
-                .addGap(38, 38, 38)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(namaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(hargaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(SatuanField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(SatuanField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(SatuanField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
@@ -254,10 +273,10 @@ public class sparepart extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel4))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -265,10 +284,10 @@ public class sparepart extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -334,6 +353,18 @@ public class sparepart extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_SatuanFieldActionPerformed
 
+    private void SatuanField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SatuanField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SatuanField1ActionPerformed
+
+    private void SatuanField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SatuanField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SatuanField2ActionPerformed
+
+    private void btnSparePartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSparePartActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSparePartActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -361,6 +392,8 @@ public class sparepart extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField SatuanField;
+    private javax.swing.JTextField SatuanField1;
+    private javax.swing.JTextField SatuanField2;
     private javax.swing.JButton btnDataPelanggan;
     private javax.swing.JButton btnHapus;
     private javax.swing.JButton btnKendaraan;

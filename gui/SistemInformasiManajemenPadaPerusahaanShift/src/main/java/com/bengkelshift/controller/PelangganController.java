@@ -38,8 +38,8 @@ public class PelangganController {
             validasi(data);
             return dao.updatePelanggan(data);
         } catch (IllegalArgumentException e) {
-            System.out.println("Validasi gagal: " + e.getMessage());
-            return false;
+              throw e;
+
         } catch (Exception e) {
             System.out.println("Terjadi kesalahan saat mengubah data: " + e.getMessage());
             return false;
@@ -60,8 +60,37 @@ public class PelangganController {
     }
 
     private void validasi(Pelanggan data) {
-        if (data == null) throw new IllegalArgumentException("Objek data tidak boleh null.");
-        if (data.getNamaPelanggan() == null || data.getNamaPelanggan().isBlank()) throw new IllegalArgumentException("Nama pelanggan wajib diisi.");
-        if (data.getNoHp() == null || data.getNoHp().isBlank()) throw new IllegalArgumentException("Nomor HP wajib diisi.");
+        if (data == null) {
+            throw new IllegalArgumentException(
+                "Objek data tidak boleh null."
+            );
+        }
+
+        if (data.getNamaPelanggan() == null
+                || data.getNamaPelanggan().isBlank()) {
+            throw new IllegalArgumentException(
+                "Nama pelanggan wajib diisi."
+            );
+        }
+
+        if (data.getNoHp() == null
+                || data.getNoHp().isBlank()) {
+            throw new IllegalArgumentException(
+                "Nomor HP wajib diisi."
+            );
+        }
+
+        if (!data.getNoHp().matches("[0-9]+")) {
+            throw new IllegalArgumentException(
+                "Nomor HP hanya boleh berisi angka."
+            );
+        }
+
+        if (data.getNoHp().length() < 10
+                || data.getNoHp().length() > 13) {
+            throw new IllegalArgumentException(
+                "Nomor HP harus terdiri dari 10 sampai 13 angka."
+            );
+        }
     }
 }

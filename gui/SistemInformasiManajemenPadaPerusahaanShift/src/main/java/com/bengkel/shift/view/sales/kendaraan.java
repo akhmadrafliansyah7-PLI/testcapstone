@@ -45,20 +45,19 @@ public class kendaraan extends javax.swing.JFrame {
         btnServis = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
+        platField = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         btnTambah = new javax.swing.JButton();
         btnHapus = new javax.swing.JButton();
-        noPolisiField = new javax.swing.JTextField();
         tipeField = new javax.swing.JTextField();
-        warnaField = new javax.swing.JTextField();
-        rangkaField = new javax.swing.JTextField();
         mesinField = new javax.swing.JTextField();
-        tahunField = new javax.swing.JTextField();
         pemilikField = new javax.swing.JTextField();
+        tahunField = new javax.swing.JTextField();
+        rangkaField = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         jLabel3.setBackground(new java.awt.Color(0, 102, 153));
         jLabel3.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
@@ -152,34 +151,17 @@ public class kendaraan extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(0, 102, 153));
         jLabel4.setText("Data Kendaraan");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "ID", "Nama", "No. Telepon"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
-        jScrollPane1.setViewportView(jTable1);
-
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel6.setBackground(new java.awt.Color(0, 102, 153));
         jLabel6.setFont(new java.awt.Font("Tw Cen MT", 1, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 102, 153));
         jLabel6.setText("Form Kendaraan");
+
+        platField.setBackground(new java.awt.Color(204, 204, 204));
+        platField.setForeground(new java.awt.Color(102, 102, 102));
+        platField.setText("No. Polisi");
+        platField.addActionListener(this::platFieldActionPerformed);
 
         jButton2.setBackground(new java.awt.Color(0, 102, 153));
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -190,39 +172,37 @@ public class kendaraan extends javax.swing.JFrame {
         btnTambah.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnTambah.setForeground(new java.awt.Color(255, 255, 255));
         btnTambah.setText("+ Tambah");
+        btnTambah.addActionListener(this::btnTambahActionPerformed);
 
         btnHapus.setBackground(new java.awt.Color(255, 0, 0));
         btnHapus.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnHapus.setForeground(new java.awt.Color(255, 255, 255));
         btnHapus.setText("Hapus");
 
-        noPolisiField.setBackground(new java.awt.Color(204, 204, 204));
-        noPolisiField.setForeground(new java.awt.Color(102, 102, 102));
-        noPolisiField.setText("No. Polisi");
-
         tipeField.setBackground(new java.awt.Color(204, 204, 204));
         tipeField.setForeground(new java.awt.Color(102, 102, 102));
         tipeField.setText("Tipe");
-
-        warnaField.setBackground(new java.awt.Color(204, 204, 204));
-        warnaField.setForeground(new java.awt.Color(102, 102, 102));
-        warnaField.setText("Warna");
-
-        rangkaField.setBackground(new java.awt.Color(204, 204, 204));
-        rangkaField.setForeground(new java.awt.Color(102, 102, 102));
-        rangkaField.setText("No. Rangka");
+        tipeField.addActionListener(this::tipeFieldActionPerformed);
 
         mesinField.setBackground(new java.awt.Color(204, 204, 204));
         mesinField.setForeground(new java.awt.Color(102, 102, 102));
         mesinField.setText("No. Mesin");
-
-        tahunField.setBackground(new java.awt.Color(204, 204, 204));
-        tahunField.setForeground(new java.awt.Color(102, 102, 102));
-        tahunField.setText("Tahun");
+        mesinField.addActionListener(this::mesinFieldActionPerformed);
 
         pemilikField.setBackground(new java.awt.Color(204, 204, 204));
         pemilikField.setForeground(new java.awt.Color(102, 102, 102));
         pemilikField.setText("Pemilik");
+        pemilikField.addActionListener(this::pemilikFieldActionPerformed);
+
+        tahunField.setBackground(new java.awt.Color(204, 204, 204));
+        tahunField.setForeground(new java.awt.Color(102, 102, 102));
+        tahunField.setText("Tahun Produksi");
+        tahunField.addActionListener(this::tahunFieldActionPerformed);
+
+        rangkaField.setBackground(new java.awt.Color(204, 204, 204));
+        rangkaField.setForeground(new java.awt.Color(102, 102, 102));
+        rangkaField.setText("No. Rangka");
+        rangkaField.addActionListener(this::rangkaFieldActionPerformed);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -231,27 +211,28 @@ public class kendaraan extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(btnTambah))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(pemilikField, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(platField, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tipeField, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(tipeField, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(noPolisiField, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(warnaField, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(btnHapus, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(rangkaField, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
-                                    .addComponent(mesinField)
-                                    .addComponent(tahunField, javax.swing.GroupLayout.Alignment.LEADING))))))
-                .addContainerGap(34, Short.MAX_VALUE))
+                                .addGap(10, 10, 10)
+                                .addComponent(btnTambah, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(30, Short.MAX_VALUE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jButton2)
+                                .addComponent(pemilikField, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnHapus))
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(tahunField, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
+                                    .addComponent(mesinField, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(rangkaField, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -259,27 +240,47 @@ public class kendaraan extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rangkaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(noPolisiField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(platField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tipeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(mesinField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tipeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tahunField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(warnaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(rangkaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tahunField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pemilikField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
+                    .addComponent(btnHapus)
                     .addComponent(btnTambah))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnHapus)
                 .addContainerGap())
         );
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Nomor Plat", "Tipe", "Nomor Mesin", "Nomor Rangka", "Pemilik", "Tahun Produksi"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -291,9 +292,11 @@ public class kendaraan extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel4))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -301,10 +304,10 @@ public class kendaraan extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -362,6 +365,34 @@ public class kendaraan extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void platFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_platFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_platFieldActionPerformed
+
+    private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnTambahActionPerformed
+
+    private void tipeFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipeFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tipeFieldActionPerformed
+
+    private void rangkaFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rangkaFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rangkaFieldActionPerformed
+
+    private void mesinFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mesinFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mesinFieldActionPerformed
+
+    private void tahunFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tahunFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tahunFieldActionPerformed
+
+    private void pemilikFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pemilikFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pemilikFieldActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -413,11 +444,10 @@ public class kendaraan extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField mesinField;
-    private javax.swing.JTextField noPolisiField;
     private javax.swing.JTextField pemilikField;
+    private javax.swing.JTextField platField;
     private javax.swing.JTextField rangkaField;
     private javax.swing.JTextField tahunField;
     private javax.swing.JTextField tipeField;
-    private javax.swing.JTextField warnaField;
     // End of variables declaration//GEN-END:variables
 }

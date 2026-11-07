@@ -33,4 +33,8 @@ public class Admin extends Karyawan{
     public void setTanggalMulaiBertugas(Date tanggalMulaiBertugas) {
         this.tanggalMulaiBertugas = tanggalMulaiBertugas;
     }
+    @Override
+    public String getPeran(){
+        return "Administrator";
+    }
 }

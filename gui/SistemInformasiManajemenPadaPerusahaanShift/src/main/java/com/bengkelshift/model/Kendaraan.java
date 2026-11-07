@@ -16,7 +16,7 @@ public class Kendaraan {
     private String noMesin;
     private int tahunProduksi;
     private int idPelanggan;
-
+    
     public Kendaraan() {
     }
 

@@ -32,4 +32,8 @@ public class Mekanik extends Karyawan{
     public void setSpesialisasi(String spesialisasi) {
         this.spesialisasi = spesialisasi;
     }
+    @Override
+    public String getPeran(){
+        return "Mekanik";
+    }
 }

@@ -54,6 +54,8 @@ public class servs extends javax.swing.JFrame {
         servisField = new javax.swing.JTextField();
         platField = new javax.swing.JTextField();
         comboMekanik = new javax.swing.JComboBox<>();
+        kmField1 = new javax.swing.JTextField();
+        kmField2 = new javax.swing.JTextField();
 
         jLabel3.setBackground(new java.awt.Color(0, 102, 153));
         jLabel3.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
@@ -137,17 +139,17 @@ public class servs extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Tanggal Servis", "No. Plat", "Kilometer", "Keluhan", "Mekanik", "Rekomendasi", "Diagnosis"
+                "ID", "Tanggal Servis", "No. Plat", "Kilometer", "Keluhan", "Mekanik", "Rekomendasi", "Diagnosis", "Tipe Kendaraan", "No. Transaksi"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class, java.lang.Integer.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -168,6 +170,7 @@ public class servs extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Ubah");
+        jButton2.addActionListener(this::jButton2ActionPerformed);
 
         tanggalField.setBackground(new java.awt.Color(204, 204, 204));
         tanggalField.setForeground(new java.awt.Color(102, 102, 102));
@@ -198,6 +201,15 @@ public class servs extends javax.swing.JFrame {
         comboMekanik.setEditable(true);
         comboMekanik.setForeground(new java.awt.Color(102, 102, 102));
         comboMekanik.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mekanik 1", "Mekanik 2", "Mekanik 3", "Mekanik 4" }));
+        comboMekanik.addActionListener(this::comboMekanikActionPerformed);
+
+        kmField1.setBackground(new java.awt.Color(204, 204, 204));
+        kmField1.setForeground(new java.awt.Color(102, 102, 102));
+        kmField1.setText("Tipe Kendaraan");
+
+        kmField2.setBackground(new java.awt.Color(204, 204, 204));
+        kmField2.setForeground(new java.awt.Color(102, 102, 102));
+        kmField2.setText("No. Transaksi");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -208,22 +220,29 @@ public class servs extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel6)
-                        .addGap(39, 39, 39))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(comboMekanik, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
+                                .addComponent(kmField1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(kmField2, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
                             .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(tanggalField, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(17, 17, 17)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton2)
-                                    .addComponent(platField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(platField, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                                        .addComponent(jButton2)
+                                        .addGap(12, 12, 12))))
                             .addComponent(diagnosisField)
                             .addComponent(keluhanField)
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(kmField, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(servisField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(servisField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(comboMekanik, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(31, 31, 31))))
         );
         jPanel4Layout.setVerticalGroup(
@@ -244,10 +263,14 @@ public class servs extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(keluhanField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(kmField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(kmField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(comboMekanik, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(8, 8, 8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton2)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -273,7 +296,7 @@ public class servs extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(10, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -326,6 +349,14 @@ public class servs extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_servisFieldActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void comboMekanikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboMekanikActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboMekanikActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -375,6 +406,8 @@ public class servs extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField keluhanField;
     private javax.swing.JTextField kmField;
+    private javax.swing.JTextField kmField1;
+    private javax.swing.JTextField kmField2;
     private javax.swing.JTextField platField;
     private javax.swing.JTextField servisField;
     private javax.swing.JTextField tanggalField;

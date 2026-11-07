@@ -61,6 +61,7 @@ public class stok extends javax.swing.JFrame {
         pemilikField = new javax.swing.JTextField();
         tahunField = new javax.swing.JTextField();
         jComboBox1 = new javax.swing.JComboBox<>();
+        tahunField1 = new javax.swing.JTextField();
         btnPegawai = new javax.swing.JButton();
 
         jLabel3.setBackground(new java.awt.Color(0, 102, 153));
@@ -247,6 +248,11 @@ public class stok extends javax.swing.JFrame {
         jComboBox1.setForeground(new java.awt.Color(102, 102, 102));
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TERSEDIA", " " }));
 
+        tahunField1.setBackground(new java.awt.Color(204, 204, 204));
+        tahunField1.setForeground(new java.awt.Color(102, 102, 102));
+        tahunField1.setText("No. Transaksi");
+        tahunField1.addActionListener(this::tahunField1ActionPerformed);
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -276,12 +282,17 @@ public class stok extends javax.swing.JFrame {
                         .addContainerGap(30, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
+                                .addComponent(pemilikField, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tahunField, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(tahunField)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton2))
-                            .addComponent(pemilikField, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnHapus))
+                                .addGap(132, 132, 132)
+                                .addComponent(btnHapus))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(tahunField1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton2)))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel4Layout.setVerticalGroup(
@@ -302,11 +313,13 @@ public class stok extends javax.swing.JFrame {
                     .addComponent(rangkaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(mesinField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pemilikField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(pemilikField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tahunField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(tahunField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnHapus)
@@ -434,6 +447,10 @@ public class stok extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tahunFieldActionPerformed
 
+    private void tahunField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tahunField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tahunField1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -492,6 +509,7 @@ public class stok extends javax.swing.JFrame {
     private javax.swing.JTextField platField;
     private javax.swing.JTextField rangkaField;
     private javax.swing.JTextField tahunField;
+    private javax.swing.JTextField tahunField1;
     private javax.swing.JTextField tipeField;
     private javax.swing.JTextField warnaField;
     // End of variables declaration//GEN-END:variables

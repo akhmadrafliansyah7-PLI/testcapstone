@@ -49,14 +49,13 @@ public class tarif extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        idField = new javax.swing.JTextField();
-        jasaField = new javax.swing.JTextField();
-        tarifField = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         btnTambah = new javax.swing.JButton();
         btnHapus = new javax.swing.JButton();
-        teleponField1 = new javax.swing.JTextField();
-        estimasiField = new javax.swing.JTextField();
+        jasaField = new javax.swing.JTextField();
+        deskripsiField = new javax.swing.JTextField();
+        tarifField = new javax.swing.JTextField();
+        waktuField = new javax.swing.JTextField();
 
         jLabel3.setBackground(new java.awt.Color(0, 102, 153));
         jLabel3.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
@@ -158,11 +157,11 @@ public class tarif extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "ID", "Nama Jasa", "Tarif", "Deskripsi", "Estimasi"
+                "ID", "Nama Jasa", "Tarif", "Deskripsi", "Estimasi Waktu"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -177,20 +176,7 @@ public class tarif extends javax.swing.JFrame {
         jLabel6.setBackground(new java.awt.Color(0, 102, 153));
         jLabel6.setFont(new java.awt.Font("Tw Cen MT", 1, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 102, 153));
-        jLabel6.setText("Form Pelanggan");
-
-        idField.setBackground(new java.awt.Color(204, 204, 204));
-        idField.setForeground(new java.awt.Color(102, 102, 102));
-        idField.setText("ID");
-
-        jasaField.setBackground(new java.awt.Color(204, 204, 204));
-        jasaField.setForeground(new java.awt.Color(102, 102, 102));
-        jasaField.setText("Nama Jasa");
-
-        tarifField.setBackground(new java.awt.Color(204, 204, 204));
-        tarifField.setForeground(new java.awt.Color(102, 102, 102));
-        tarifField.setText("Tarif Jasa");
-        tarifField.addActionListener(this::tarifFieldActionPerformed);
+        jLabel6.setText("Form Tarif Jasa");
 
         jButton2.setBackground(new java.awt.Color(0, 102, 153));
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -201,21 +187,32 @@ public class tarif extends javax.swing.JFrame {
         btnTambah.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnTambah.setForeground(new java.awt.Color(255, 255, 255));
         btnTambah.setText("+ Tambah");
+        btnTambah.addActionListener(this::btnTambahActionPerformed);
 
         btnHapus.setBackground(new java.awt.Color(255, 0, 0));
         btnHapus.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnHapus.setForeground(new java.awt.Color(255, 255, 255));
         btnHapus.setText("Hapus");
 
-        teleponField1.setBackground(new java.awt.Color(204, 204, 204));
-        teleponField1.setForeground(new java.awt.Color(102, 102, 102));
-        teleponField1.setText("Deskripsi");
-        teleponField1.addActionListener(this::teleponField1ActionPerformed);
+        jasaField.setBackground(new java.awt.Color(204, 204, 204));
+        jasaField.setForeground(new java.awt.Color(102, 102, 102));
+        jasaField.setText("Nama Jasa");
+        jasaField.addActionListener(this::jasaFieldActionPerformed);
 
-        estimasiField.setBackground(new java.awt.Color(204, 204, 204));
-        estimasiField.setForeground(new java.awt.Color(102, 102, 102));
-        estimasiField.setText("Estimasi Waktu ( Menit )");
-        estimasiField.addActionListener(this::estimasiFieldActionPerformed);
+        deskripsiField.setBackground(new java.awt.Color(204, 204, 204));
+        deskripsiField.setForeground(new java.awt.Color(102, 102, 102));
+        deskripsiField.setText("Deskripsi");
+        deskripsiField.addActionListener(this::deskripsiFieldActionPerformed);
+
+        tarifField.setBackground(new java.awt.Color(204, 204, 204));
+        tarifField.setForeground(new java.awt.Color(102, 102, 102));
+        tarifField.setText("Tarif");
+        tarifField.addActionListener(this::tarifFieldActionPerformed);
+
+        waktuField.setBackground(new java.awt.Color(204, 204, 204));
+        waktuField.setForeground(new java.awt.Color(102, 102, 102));
+        waktuField.setText("Estimasi Waktu ( Menit )");
+        waktuField.addActionListener(this::waktuFieldActionPerformed);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -224,41 +221,41 @@ public class tarif extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(idField, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jasaField, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tarifField, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(btnTambah)
-                        .addGap(18, 18, 18)
+                        .addComponent(jLabel6)
+                        .addContainerGap(153, Short.MAX_VALUE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnHapus)
-                            .addComponent(jButton2)))
-                    .addComponent(teleponField1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(estimasiField, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(18, Short.MAX_VALUE))
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(jPanel4Layout.createSequentialGroup()
+                                    .addComponent(btnTambah, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jButton2))
+                                .addComponent(tarifField, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
+                                .addComponent(btnHapus)
+                                .addComponent(deskripsiField)
+                                .addComponent(waktuField, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(jasaField, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(idField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jasaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(tarifField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(deskripsiField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
-                .addComponent(teleponField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(waktuField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(estimasiField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(btnTambah))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addComponent(btnHapus)
                 .addContainerGap())
         );
@@ -272,7 +269,7 @@ public class tarif extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel4))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -283,10 +280,10 @@ public class tarif extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -344,17 +341,25 @@ public class tarif extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnTambahActionPerformed
+
+    private void jasaFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jasaFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jasaFieldActionPerformed
+
+    private void deskripsiFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deskripsiFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deskripsiFieldActionPerformed
+
     private void tarifFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tarifFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tarifFieldActionPerformed
 
-    private void teleponField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teleponField1ActionPerformed
+    private void waktuFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_waktuFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_teleponField1ActionPerformed
-
-    private void estimasiFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estimasiFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_estimasiFieldActionPerformed
+    }//GEN-LAST:event_waktuFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -392,8 +397,7 @@ public class tarif extends javax.swing.JFrame {
     private javax.swing.JButton btnTambah1;
     private javax.swing.JButton btnTarif;
     private javax.swing.JButton btnTransaksi1;
-    private javax.swing.JTextField estimasiField;
-    private javax.swing.JTextField idField;
+    private javax.swing.JTextField deskripsiField;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -410,6 +414,6 @@ public class tarif extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jasaField;
     private javax.swing.JTextField tarifField;
-    private javax.swing.JTextField teleponField1;
+    private javax.swing.JTextField waktuField;
     // End of variables declaration//GEN-END:variables
 }

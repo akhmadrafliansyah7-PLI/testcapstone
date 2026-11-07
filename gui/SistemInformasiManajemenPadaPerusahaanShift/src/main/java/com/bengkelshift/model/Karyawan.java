@@ -8,7 +8,7 @@ package com.bengkelshift.model;
  *
  * @author Lenovo GK
  */
-public class Karyawan {
+public class Karyawan extends pengguna{
     private int idKaryawan;
     private String namaKaryawan;
     private String noHp;
@@ -87,5 +87,9 @@ public class Karyawan {
 
     public void setStatusAktif(String statusAktif) {
         this.statusAktif = statusAktif;
+    }
+    @Override
+    public String getPeran(){
+        return "Karyawan";
     }
 }

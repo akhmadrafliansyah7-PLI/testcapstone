@@ -45,4 +45,5 @@ public class Pelanggan {
     public void setNoHp(String noHp) {
         this.noHp = noHp;
     }
+    
 }

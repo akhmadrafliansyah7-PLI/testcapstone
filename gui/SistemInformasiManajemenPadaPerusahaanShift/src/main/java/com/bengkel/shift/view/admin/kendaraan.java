@@ -4,6 +4,9 @@
  */
 package com.bengkel.shift.view.admin;
 
+import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
+import com.bengkelshift.model.Pelanggan;
 /**
  *
  * @author User
@@ -55,7 +58,6 @@ public class kendaraan extends javax.swing.JFrame {
         btnTambah = new javax.swing.JButton();
         btnHapus = new javax.swing.JButton();
         tipeField = new javax.swing.JTextField();
-        warnaField = new javax.swing.JTextField();
         rangkaField = new javax.swing.JTextField();
         mesinField = new javax.swing.JTextField();
         pemilikField = new javax.swing.JTextField();
@@ -164,17 +166,17 @@ public class kendaraan extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Nomor Plat", "Tipe", "Warna", "Nomor Mesin", "Nomor Mesin", "Pemilik", "Tahun Produksi"
+                "ID", "Nomor Plat", "Tipe", "Nomor Mesin", "Nomor Rangka", "Pemilik", "Tahun Produksi"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -193,13 +195,14 @@ public class kendaraan extends javax.swing.JFrame {
 
         platField.setBackground(new java.awt.Color(204, 204, 204));
         platField.setForeground(new java.awt.Color(102, 102, 102));
-        platField.setText("No. Plat");
+        platField.setText("No. Polisi");
         platField.addActionListener(this::platFieldActionPerformed);
 
         jButton2.setBackground(new java.awt.Color(0, 102, 153));
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Ubah");
+        jButton2.addActionListener(this::jButton2ActionPerformed);
 
         btnTambah.setBackground(new java.awt.Color(0, 255, 0));
         btnTambah.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -211,16 +214,12 @@ public class kendaraan extends javax.swing.JFrame {
         btnHapus.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnHapus.setForeground(new java.awt.Color(255, 255, 255));
         btnHapus.setText("Hapus");
+        btnHapus.addActionListener(this::btnHapusActionPerformed);
 
         tipeField.setBackground(new java.awt.Color(204, 204, 204));
         tipeField.setForeground(new java.awt.Color(102, 102, 102));
         tipeField.setText("Tipe");
         tipeField.addActionListener(this::tipeFieldActionPerformed);
-
-        warnaField.setBackground(new java.awt.Color(204, 204, 204));
-        warnaField.setForeground(new java.awt.Color(102, 102, 102));
-        warnaField.setText("Warna");
-        warnaField.addActionListener(this::warnaFieldActionPerformed);
 
         rangkaField.setBackground(new java.awt.Color(204, 204, 204));
         rangkaField.setForeground(new java.awt.Color(102, 102, 102));
@@ -251,27 +250,28 @@ public class kendaraan extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(platField, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tipeField, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(warnaField, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(mesinField, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(8, 8, 8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(rangkaField, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(btnTambah, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(30, Short.MAX_VALUE))
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jButton2)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
+                                        .addComponent(tahunField)
+                                        .addGap(90, 90, 90))
+                                    .addComponent(pemilikField, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addComponent(btnTambah, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnHapus)))))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(tahunField)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton2))
-                            .addComponent(pemilikField, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnHapus))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(platField, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tipeField, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(30, Short.MAX_VALUE))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -283,18 +283,16 @@ public class kendaraan extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tipeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(warnaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rangkaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(mesinField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(mesinField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rangkaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pemilikField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2)
-                    .addComponent(tahunField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addComponent(tahunField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnHapus)
                     .addComponent(btnTambah))
@@ -402,10 +400,6 @@ public class kendaraan extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tipeFieldActionPerformed
 
-    private void warnaFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_warnaFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_warnaFieldActionPerformed
-
     private void rangkaFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rangkaFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_rangkaFieldActionPerformed
@@ -421,6 +415,14 @@ public class kendaraan extends javax.swing.JFrame {
     private void tahunFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tahunFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tahunFieldActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnHapusActionPerformed
 
     /**
      * @param args the command line arguments
@@ -480,6 +482,5 @@ public class kendaraan extends javax.swing.JFrame {
     private javax.swing.JTextField rangkaField;
     private javax.swing.JTextField tahunField;
     private javax.swing.JTextField tipeField;
-    private javax.swing.JTextField warnaField;
     // End of variables declaration//GEN-END:variables
 }

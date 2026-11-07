@@ -1,5 +1,7 @@
 package com.bengkelshift.controller;
 
+import com.bengkelshift.dao.PelangganDAO;
+import com.bengkelshift.model.Pelanggan;
 import com.bengkelshift.dao.KendaraanDAO;
 import com.bengkelshift.model.Kendaraan;
 import java.util.ArrayList;
@@ -21,13 +23,9 @@ public class KendaraanController {
         }
     }
 
-    public ArrayList<Kendaraan> tampilSemua() {
-        try {
-            return dao.getAllKendaraan();
-        } catch (Exception e) {
-            System.out.println("Gagal menampilkan data: " + e.getMessage());
-            return new ArrayList<>();
-        }
+    public ArrayList<Pelanggan> daftarPelanggan() {
+        PelangganDAO pelangganDAO = new PelangganDAO();
+        return pelangganDAO.getAllPelanggan();
     }
 
     public boolean ubah(Kendaraan data) {

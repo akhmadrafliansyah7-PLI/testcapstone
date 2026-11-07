@@ -32,4 +32,8 @@ public class Sales extends Karyawan{
     public void setJumlahUnitTerjual(int jumlahUnitTerjual) {
         this.jumlahUnitTerjual = jumlahUnitTerjual;
     }
+    @Override
+    public String getPeran(){
+        return "Sales";
+    }
 }

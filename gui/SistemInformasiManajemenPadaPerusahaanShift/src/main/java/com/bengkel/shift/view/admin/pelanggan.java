@@ -187,7 +187,7 @@ public class pelanggan extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -363,25 +363,33 @@ public class pelanggan extends javax.swing.JFrame {
     }//GEN-LAST:event_namaFieldActionPerformed
 
     private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
-        Pelanggan p = new Pelanggan();
+        try {
+            Pelanggan p = new Pelanggan();
 
-        p.setNamaPelanggan(namaField.getText().trim());
-        p.setNoHp(teleponField.getText().trim());
+            p.setNamaPelanggan(namaField.getText().trim());
+            p.setNoHp(teleponField.getText().trim());
 
-        if (controller.tambah(p)) {
+            if (controller.tambah(p)) {
+
+                JOptionPane.showMessageDialog(this,
+                        "Pelanggan berhasil ditambahkan!");
+
+                muatTabel();
+
+                namaField.setText("");
+                teleponField.setText("");
+
+            } else {
+                JOptionPane.showMessageDialog(this,
+                        "Gagal menambahkan pelanggan karena terjadi kesalahan database.");
+            }
+
+        } catch (IllegalArgumentException e) {
 
             JOptionPane.showMessageDialog(this,
-                    "Pelanggan berhasil ditambahkan!");
-
-            muatTabel();
-
-            namaField.setText("");
-            teleponField.setText("");
-
-        } else {
-
-            JOptionPane.showMessageDialog(this,
-                    "Gagal menambahkan pelanggan! Periksa input dan database.");
+                    e.getMessage(),
+                    "Validasi Input",
+                    JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnTambahActionPerformed
     
@@ -416,7 +424,7 @@ private void pilihData() {
 
 private void ubahPelanggan() {
 
-    int baris = jTable1.getSelectedRow();
+     int baris = jTable1.getSelectedRow();
 
     if (baris == -1) {
         JOptionPane.showMessageDialog(this,
@@ -424,23 +432,37 @@ private void ubahPelanggan() {
         return;
     }
 
-    Pelanggan p = new Pelanggan();
+    try {
+        Pelanggan p = new Pelanggan();
 
-    p.setIdPelanggan(
-            Integer.parseInt(
-                    jTable1.getValueAt(baris, 0).toString()));
+        p.setIdPelanggan(
+                Integer.parseInt(
+                        jTable1.getValueAt(baris, 0).toString()));
 
-    p.setNamaPelanggan(namaField.getText().trim());
-    p.setNoHp(teleponField.getText().trim());
+        p.setNamaPelanggan(namaField.getText().trim());
+        p.setNoHp(teleponField.getText().trim());
 
-    if (controller.ubah(p)) {
+        if (controller.ubah(p)) {
+
+            JOptionPane.showMessageDialog(this,
+                    "Data pelanggan berhasil diubah!");
+
+            muatTabel();
+
+            namaField.setText("");
+            teleponField.setText("");
+
+        } else {
+            JOptionPane.showMessageDialog(this,
+                    "Gagal mengubah data pelanggan karena terjadi kesalahan database.");
+        }
+
+    } catch (IllegalArgumentException e) {
+
         JOptionPane.showMessageDialog(this,
-                "Data pelanggan berhasil diubah!");
-
-        muatTabel();
-    } else {
-        JOptionPane.showMessageDialog(this,
-                "Gagal mengubah data pelanggan!");
+                e.getMessage(),
+                "Validasi Input",
+                JOptionPane.WARNING_MESSAGE);
     }
 }
 
@@ -459,14 +481,15 @@ private void hapusPelanggan() {
 
     int konfirmasi = JOptionPane.showConfirmDialog(
             this,
-            "Yakin ingin menghapus pelanggan ini?",
-            "Konfirmasi",
+            "Apakah Anda yakin ingin menghapus pelanggan ini?",
+            "Konfirmasi Hapus",
             JOptionPane.YES_NO_OPTION
     );
 
     if (konfirmasi == JOptionPane.YES_OPTION) {
 
         if (controller.hapus(id)) {
+
             JOptionPane.showMessageDialog(this,
                     "Data pelanggan berhasil dihapus!");
 
@@ -477,7 +500,7 @@ private void hapusPelanggan() {
 
         } else {
             JOptionPane.showMessageDialog(this,
-                    "Gagal menghapus pelanggan!");
+                    "Gagal menghapus data pelanggan!");
         }
     }
 }
